@@ -1,15 +1,16 @@
+const storageInput = document.querySelector("#storage");
+const text = document.querySelector(".text");
+const button = document.querySelector(".button");
+const storedInput = localStorage.getItem("textinput");
+
 let today = moment().format("MMMM Do YYYY dddd, h:mm:ss a");
 document.getElementById("currentDay").innerHTML = today;
 
 console.log(moment("2021-03-17T10:00:27-04").isBefore("2021-03-17T12:00"));
 
-const storageInput = document.querySelector("#storage");
-const text = document.querySelector(".text");
-const button = document.querySelector(".button");
-const storedInput = localStorage.getItem("savedata");
-
+// returns the data to the console.
 if (storageInput) {
-  text.textContent = storedInput;
+  text.textContent = storageInput;
 }
 
 storageInput.addEventListener("input", (letter) => {
@@ -18,11 +19,12 @@ storageInput.addEventListener("input", (letter) => {
 });
 
 const saveToLocalStorage = () => {
-  localStorage.setItem("savedata", text.textContent);
+  localStorage.setItem("textinput", text.textContent);
 
-  button.addEventListener("click", saveToLocalStorage);
+  button.addEventListener("text", saveToLocalStorage);
 };
 
+//sets time & at the beginning of the day each slot will start out green until it passes the hour then it will turn red. After 1700 They all turn red.
 $(document).ready(function () {
   $("#appt-time-9").css({
     backgroundColor: function () {
