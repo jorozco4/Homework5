@@ -3,6 +3,26 @@ document.getElementById("currentDay").innerHTML = today;
 
 console.log(moment("2021-03-17T10:00:27-04").isBefore("2021-03-17T12:00"));
 
+const storageInput = document.querySelector("#storage");
+const text = document.querySelector(".text");
+const button = document.querySelector(".button");
+const storedInput = localStorage.getItem("savedata");
+
+if (storageInput) {
+  text.textContent = storedInput;
+}
+
+storageInput.addEventListener("input", (letter) => {
+  console.log(letter.target.value);
+  text.textContent = letter.target.value;
+});
+
+const saveToLocalStorage = () => {
+  localStorage.setItem("savedata", text.textContent);
+
+  button.addEventListener("click", saveToLocalStorage);
+};
+
 $(document).ready(function () {
   $("#appt-time-9").css({
     backgroundColor: function () {
